@@ -1,7 +1,7 @@
 """
     Tercera tarea de APA - manejo de vectores
 
-    Nombre y apellidos:
+    Nombre y apellidos: Tomàs Lloret Martínez
 """
 
 class Vector:
@@ -84,4 +84,31 @@ class Vector:
         """
 
         return -self + other
+    
+    def __mul__(self, other):
+        """
+        Multiplica el vector por otro vector o una constante.
+
+        >>> v1 = Vector([1, 2, 3])
+        >>> v2 = Vector([4, 5, 6])
+        >>> v1 * 2
+        Vector([2, 4, 6])
+        >>> v2 * v1
+        Vector([4, 10, 18])
+        """
+        if isinstance(other, (int, float, complex)):
+            # Multiplicación escalar
+            return Vector(uno * other for uno in self)
+        elif isinstance(other, Vector):
+            # Multiplicación entre vectores
+            if len(self.vector) != len(other.vector):
+                raise ValueError("Los vectores no tienen la misma longitud")
+            return Vector(uno * otro for uno, otro in zip(self, other))
+            # Esta comprensión funciona de la siguiente manera:
+            # Creamos un objeto Vector vacío, que iremos llenando con
+            # el resultado de multiplicar cada componente de self por
+            # el vector other (juntados en la dupla creada por la función zip)
+        else:
+            raise ValueError("No has usado la funcion correctamente, listillo")
+    
 
