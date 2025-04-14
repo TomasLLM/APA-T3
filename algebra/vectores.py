@@ -122,6 +122,7 @@ class Vector:
         >>> v1 = Vector([1, 2, 3])
         >>> v2 = Vector([4, 5, 6])
         >>> v1 @ v2
+        32
         """
 
         if isinstance(other, Vector):
